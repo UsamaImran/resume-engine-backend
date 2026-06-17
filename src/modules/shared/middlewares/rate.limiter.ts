@@ -1,6 +1,7 @@
 import rateLimit from "express-rate-limit";
 import { Request, Response } from "express";
 import { config } from "../../../config/env.js";
+import { HttpStatus } from "../constants/http.status.ts";
 
 // Helper to get client IP (works for both IPv4 and IPv6)
 const getClientIp = (req: Request): string => {
@@ -21,7 +22,7 @@ export const rateLimiter = rateLimit({
   message: {
     success: false,
     error: "Too many requests, please try again later.",
-    statusCode: 429,
+    statusCode: HttpStatus.TOO_MANY_REQUESTS,
   },
   keyGenerator: (req: Request) => {
     const userId = (req as any).userId || "anonymous";
@@ -38,7 +39,7 @@ export const rateLimiter = rateLimit({
     res.status(429).json({
       success: false,
       error: "Too many requests, please try again later.",
-      statusCode: 429,
+      statusCode: HttpStatus.TOO_MANY_REQUESTS,
       retryAfter: Math.ceil(config.RATE_LIMIT_WINDOW_MS / 1000 / 60),
     });
   },
@@ -57,7 +58,7 @@ export const strictRateLimiter = rateLimit({
   message: {
     success: false,
     error: "Too many requests, please slow down.",
-    statusCode: 429,
+    statusCode: HttpStatus.TOO_MANY_REQUESTS,
   },
   keyGenerator: (req: Request) => {
     const userId = (req as any).userId || "anonymous";
@@ -74,7 +75,7 @@ export const strictRateLimiter = rateLimit({
     res.status(429).json({
       success: false,
       error: "Rate limit exceeded. Please wait before making more requests.",
-      statusCode: 429,
+      statusCode: HttpStatus.TOO_MANY_REQUESTS,
     });
   },
 });
@@ -87,7 +88,7 @@ export const lightRateLimiter = rateLimit({
   message: {
     success: false,
     error: "Too many requests, please try again later.",
-    statusCode: 429,
+    statusCode: HttpStatus.TOO_MANY_REQUESTS,
   },
   keyGenerator: (req: Request) => {
     const userId = (req as any).userId || "anonymous";
@@ -105,7 +106,7 @@ export const aiRateLimiter = rateLimit({
     success: false,
     error:
       "AI service rate limit exceeded. Please wait before making more requests.",
-    statusCode: 429,
+    statusCode: HttpStatus.TOO_MANY_REQUESTS,
   },
   keyGenerator: (req: Request) => {
     const userId = (req as any).userId || "anonymous";
@@ -124,7 +125,7 @@ export const aiRateLimiter = rateLimit({
       success: false,
       error:
         "AI service limit reached. Please wait 60 seconds before trying again.",
-      statusCode: 429,
+      statusCode: HttpStatus.TOO_MANY_REQUESTS,
       retryAfter: Math.ceil(config.AI_RATE_LIMIT_WINDOW_MS / 1000),
     });
   },
@@ -138,7 +139,7 @@ export const uploadRateLimiter = rateLimit({
   message: {
     success: false,
     error: "Upload rate limit exceeded. Please try again later.",
-    statusCode: 429,
+    statusCode: HttpStatus.TOO_MANY_REQUESTS,
   },
   keyGenerator: (req: Request) => {
     const userId = (req as any).userId || "anonymous";
@@ -155,7 +156,7 @@ export const uploadRateLimiter = rateLimit({
     res.status(429).json({
       success: false,
       error: "Too many uploads. Please wait a moment before uploading again.",
-      statusCode: 429,
+      statusCode: HttpStatus.TOO_MANY_REQUESTS,
     });
   },
 });

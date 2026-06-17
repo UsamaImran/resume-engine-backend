@@ -14,5 +14,5 @@ export function setupCoverLetterRoutes(router: Router): void {
 
   coverRouter.post("/generate-pdf", rateLimiter, controller.generatePdf);
 
-  router.use("/cover-letters", coverRouter);
+  router.use("/cover-letter", coverRouter);
 }
