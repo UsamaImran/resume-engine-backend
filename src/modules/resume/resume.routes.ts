@@ -23,5 +23,5 @@ export function setupResumeRoutes(router: Router): void {
 
   resumeRouter.post("/generate", rateLimiter, controller.generatePdf);
 
-  router.use("/resumes", resumeRouter);
+  router.use("/resume", resumeRouter);
 }
