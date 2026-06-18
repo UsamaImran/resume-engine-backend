@@ -9,10 +9,6 @@ export class ResumeController {
     this.resumeService = new ResumeService();
   }
 
-  /**
-   * POST /api/resumes/parse
-   * Upload resume file → returns structured ResumeData
-   */
   parseResume = async (
     req: Request,
     res: Response,
@@ -39,10 +35,6 @@ export class ResumeController {
     }
   };
 
-  /**
-   * POST /api/resumes/tailor
-   * Accept ResumeData + Job Description → returns tailored ResumeData
-   */
   tailorResume = async (
     req: Request,
     res: Response,
@@ -70,10 +62,6 @@ export class ResumeController {
     }
   };
 
-  /**
-   * POST /api/resumes/generate
-   * Accept final ResumeData + template → returns PDF
-   */
   generatePdf = async (
     req: Request,
     res: Response,
