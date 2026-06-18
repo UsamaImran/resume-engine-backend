@@ -73,7 +73,7 @@ export interface ParseResumeResponse {
 }
 
 export interface TailorResumeRequest {
-  resume: ResumeData;
+  resume: string;
   jobDescription: string;
   preferences?: {
     tone?: "professional" | "enthusiastic" | "formal";
