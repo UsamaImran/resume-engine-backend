@@ -32,7 +32,19 @@ Return ONLY valid JSON with this structure:
       "bullets": ["string"]
     }
   ],
-  "education": "string",
-  "npmPackages": ["string"]
+  "education": [ 
+  {
+  institution: string;
+  degree: string;
+  fieldOfStudy: string;
+  startDate: string;
+  endDate?: string;
+  gpa?: number;
+  honors?: string[];
+  courses?: string[];
+}
+  ],
+
+  "npmPackages": ["string"] // it is name of open source (node package manager)  so don't put anything if not found
 }
 `;
