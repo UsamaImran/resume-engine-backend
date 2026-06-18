@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import { RESUME_TAILOR_SYSTEM_PROMPT } from "./prompts/resume/systemPrompt.ts";
+import { RESUME_OUTPUT_SCHEMA } from "./prompts/resume/resumeOutput.schema.ts";
 
 export class AIService {
   private openai: OpenAI;
@@ -10,9 +12,6 @@ export class AIService {
     });
   }
 
-  /**
-   * Send a prompt and get a typed JSON response
-   */
   async askForJSON<T>(
     prompt: string,
     options: { model?: string; temperature?: number; maxTokens?: number } = {},
@@ -22,7 +21,14 @@ export class AIService {
     try {
       const response = await this.openai.chat.completions.create({
         model,
-        messages: [{ role: "user", content: prompt }],
+        messages: [
+          {
+            role: "system",
+            content:
+              RESUME_TAILOR_SYSTEM_PROMPT + "\n\n" + RESUME_OUTPUT_SCHEMA,
+          },
+          { role: "user", content: prompt },
+        ],
         temperature,
         max_tokens: maxTokens,
         response_format: { type: "json_object" },

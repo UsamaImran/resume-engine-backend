@@ -1,5 +1,5 @@
 import { AIService } from "../ai/ai.service.js";
-import { buildResumeTailorPrompt } from "../ai/prompts/resumeTailorPrompt.ts";
+import { buildResumeTailorPrompt } from "../ai/prompts/resume/resumeTailorPrompt.ts";
 
 import type { ResumeData } from "../resume/resume.types.js";
 
