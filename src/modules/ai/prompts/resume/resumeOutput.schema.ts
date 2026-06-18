@@ -13,7 +13,7 @@ Return ONLY valid JSON with this structure:
   "targetCompany": "string",
   "targetJobTitle": "string",
   "targeting": "string",
-  "headline": "string",
+  "headline": "string", // its basically the job title
   "summary": "string",
   "skills": [
     {
