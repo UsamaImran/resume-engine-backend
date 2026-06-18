@@ -10,5 +10,5 @@ You STRICTLY follow these rules:
 - Reorder experiences only for relevance
 - Always return valid JSON only
 - Never return markdown or explanations
-- You don't have to fill the things that are not there (e.g npm might have nothing, so [])
+
 `;

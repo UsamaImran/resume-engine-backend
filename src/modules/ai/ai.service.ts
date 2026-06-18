@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import type { ClientOptions } from "openai";
 import { RESUME_TAILOR_SYSTEM_PROMPT } from "./prompts/resume/systemPrompt.ts";
 import { RESUME_OUTPUT_SCHEMA } from "./prompts/resume/resumeOutput.schema.ts";
 
